@@ -1,5 +1,5 @@
 # Ingredients
-(*Ingredients*)
+(*.Ingredients*)
 
 ## Overview
 
@@ -21,13 +21,13 @@ package main
 import(
 	"context"
 	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
+	testcompanysamplesdk45 "github.com/speakeasy-sdks/TestCompany-sample-sdk-45"
+	"github.com/speakeasy-sdks/TestCompany-sample-sdk-45/pkg/models/shared"
 )
 
 func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
+    s := testcompanysamplesdk45.New(
+        testcompanysamplesdk45.WithSecurity(""),
     )
 
 
@@ -41,7 +41,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Ingredients != nil {
+    if res.Classes != nil {
         // handle response
     }
 }
@@ -58,4 +58,7 @@ func main() {
 ### Response
 
 **[*operations.ListIngredientsResponse](../../models/operations/listingredientsresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.APIError | 5XX                | application/json   |
+| sdkerrors.SDKError | 400-600            | */*                |

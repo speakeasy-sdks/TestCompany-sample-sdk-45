@@ -1,4 +1,4 @@
-module github.com/speakeasy-sdks/template-speakeasy-bar
+module github.com/speakeasy-sdks/TestCompany-sample-sdk-45
 
 go 1.14
 
