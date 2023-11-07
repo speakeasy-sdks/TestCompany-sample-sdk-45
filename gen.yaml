@@ -2,22 +2,15 @@ configVersion: 1.0.0
 management:
   docChecksum: abbc3a8faac54f76013e5d509a8d11ec
   docVersion: 1.0.0
-  speakeasyVersion: 1.111.0
-  generationVersion: 2.173.0
+  speakeasyVersion: 1.115.0
+  generationVersion: 2.183.0
 generation:
-  comments:
-    disableComments: false
-    omitDescriptionIfSummaryPresent: false
+  comments: {}
   devContainers:
     enabled: true
     schemaPath: ./openapi.yaml
-  baseServerURL: ""
-  flattenGlobalSecurity: true
-  repoURL: https://github.com/speakeasy-sdks/template-speakeasy-bar.git
   sdkClassName: The-Speakeasy-Bar
-  singleTagPerOp: false
-  tagNamespacingDisabled: false
-  telemetryEnabled: false
+  repoURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45.git
 features:
   go:
     core: 2.94.0
@@ -29,6 +22,16 @@ features:
     globalServerURLs: 2.82.0
     inputOutputModels: 2.81.1
     serverIDs: 2.81.1
+  typescript:
+    core: 3.1.0
+    devContainers: 2.88.0
+    errors: 2.81.7
+    examples: 2.81.3
+    flattening: 2.81.1
+    globalSecurity: 2.82.0
+    globalServerURLs: 2.82.0
+    inputOutputModels: 2.81.1
+    serverIDs: 2.81.2
 go:
   version: 0.6.0
   clientServerStatusCodesAsErrors: true
@@ -39,9 +42,19 @@ go:
   published: true
   repoSubDirectory: .
 typescript:
-  version: 0.0.1
+  version: 0.1.0
   author: TestCompany
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/components
+      webhooks: models/webhooks
+  installationURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
   maxMethodParams: 4
   packageName: The-Speakeasy-Bar
+  repoSubDirectory: .

@@ -1,8 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/go
+// README at: https://github.com/devcontainers/images/tree/main/src/typescript-node
 {
-    "name": "Go",
-    "image": "mcr.microsoft.com/devcontainers/go:1-1.20-bullseye",
+    "name": "TypeScript",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -12,39 +12,25 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "golang.go",
-                "github.vscode-pull-request-github" // Github interaction
+                "ms-vscode.vscode-typescript-tslint-plugin",
+                "esbenp.prettier-vscode",
+                "github.vscode-pull-request-github"
             ],
             "settings": {
                 "files.eol": "\n",
                 "editor.formatOnSave": true,
-                "go.buildTags": "",
-                "go.toolsEnvVars": {
-                    "CGO_ENABLED": "0"
-                },
-                "go.useLanguageServer": true,
-                "go.testEnvVars": {
-                    "CGO_ENABLED": "1"
-                },
-                "go.testFlags": [
-                    "-v",
-                    "-race"
-                ],
-                "go.testTimeout": "60s",
-                "go.coverOnSingleTest": true,
-                "go.coverOnSingleTestFile": true,
-                "go.coverOnTestPackage": true,
-                "go.lintTool": "golangci-lint",
-                "go.lintOnSave": "package",
-                "[go]": {
+                "typescript.tsc.autoDetect": "on",
+                "typescript.updateImportsOnFileMove.enabled": "always",
+                "typescript.preferences.importModuleSpecifier": "relative",
+                "[typescript]": {
                     "editor.codeActionsOnSave": {
                         "source.organizeImports": true
                     }
                 },
-                "gopls": {
-                    "usePlaceholders": false,
-                    "staticcheck": true,
-                    "vulncheck": "Imports"
+                "[typescriptreact]": {
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": true
+                    }
                 }
             }
         },

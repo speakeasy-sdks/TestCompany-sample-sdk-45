@@ -1,5 +1,5 @@
 # Drinks
-(*Drinks*)
+(*.drinks*)
 
 ## Overview
 
@@ -7,103 +7,90 @@ The drinks endpoints.
 
 ### Available Operations
 
-* [GetDrink](#getdrink) - Get a drink.
-* [ListDrinks](#listdrinks) - Get a list of drinks.
+* [getDrink](#getdrink) - Get a drink.
+* [listDrinks](#listdrinks) - Get a list of drinks.
 
-## GetDrink
+## getDrink
 
 Get a drink by name, if authenticated this will include stock levels and product codes otherwise it will only include public information.
 
 ### Example Usage
 
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
+import { GetDrinkRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-import(
-	"context"
-	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-)
+(async() => {
+  const sdk = new TheSpeakeasyBar({
+    apiKey: "",
+  });
+const name: string = "string";
 
-func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
-    )
+  const res = await sdk.drinks.getDrink(name);
 
-
-    var name string = "string"
-
-    ctx := context.Background()
-    res, err := s.Drinks.GetDrink(ctx, name)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Drink != nil {
-        // handle response
-    }
-}
+  if (res.statusCode == 200) {
+    // handle response
+  }
+})();
 ```
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `name`                                                | *string*                                              | :heavy_check_mark:                                    | N/A                                                   |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `name`                                                       | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
 
-**[*operations.GetDrinkResponse](../../models/operations/getdrinkresponse.md), error**
+**Promise<[operations.GetDrinkResponse](../../models/operations/getdrinkresponse.md)>**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 400-600          | */*              |
 
-## ListDrinks
+## listDrinks
 
 Get a list of drinks, if authenticated this will include stock levels and product codes otherwise it will only include public information.
 
 ### Example Usage
 
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
+import { DrinkType } from "The-Speakeasy-Bar/dist/models/components";
+import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-import(
-	"context"
-	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-)
+(async() => {
+  const sdk = new TheSpeakeasyBar({
+    apiKey: "",
+  });
+const drinkType: DrinkType = DrinkType.Spirit;
 
-func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
-    )
+  const res = await sdk.drinks.listDrinks(drinkType);
 
-
-    var drinkType *shared.DrinkType = shared.DrinkTypeSpirit
-
-    ctx := context.Background()
-    res, err := s.Drinks.ListDrinks(ctx, drinkType)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Drinks != nil {
-        // handle response
-    }
-}
+  if (res.statusCode == 200) {
+    // handle response
+  }
+})();
 ```
 
 ### Parameters
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `drinkType`                                                                  | [*shared.DrinkType](../../models/shared/drinktype.md)                        | :heavy_minus_sign:                                                           | The type of drink to filter by. If not provided all drinks will be returned. |
+| `drinkType`                                                                  | [components.DrinkType](../../models/shared/drinktype.md)                     | :heavy_minus_sign:                                                           | The type of drink to filter by. If not provided all drinks will be returned. |
+| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
 
 
 ### Response
 
-**[*operations.ListDrinksResponse](../../models/operations/listdrinksresponse.md), error**
+**Promise<[operations.ListDrinksResponse](../../models/operations/listdrinksresponse.md)>**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 400-600          | */*              |

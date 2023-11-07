@@ -1,5 +1,5 @@
 # Authentication
-(*Authentication*)
+(*.authentication*)
 
 ## Overview
 
@@ -7,51 +7,44 @@ The authentication endpoints.
 
 ### Available Operations
 
-* [Authenticate](#authenticate) - Authenticate with the API by providing a username and password.
+* [authenticate](#authenticate) - Authenticate with the API by providing a username and password.
 
-## Authenticate
+## authenticate
 
 Authenticate with the API by providing a username and password.
 
 ### Example Usage
 
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-import(
-	"context"
-	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/operations"
-)
+(async() => {
+  const sdk = new TheSpeakeasyBar({
+    apiKey: "",
+  });
 
-func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
-    )
+  const res = await sdk.authentication.authenticate({});
 
-    ctx := context.Background()
-    res, err := s.Authentication.Authenticate(ctx, operations.AuthenticateRequestBody{})
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Authenticate200ApplicationJSONObject != nil {
-        // handle response
-    }
-}
+  if (res.statusCode == 200) {
+    // handle response
+  }
+})();
 ```
 
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
 | `request`                                                                                | [operations.AuthenticateRequestBody](../../models/operations/authenticaterequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
 
 
 ### Response
 
-**[*operations.AuthenticateResponse](../../models/operations/authenticateresponse.md), error**
+**Promise<[operations.AuthenticateResponse](../../models/operations/authenticateresponse.md)>**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 400-600          | */*              |

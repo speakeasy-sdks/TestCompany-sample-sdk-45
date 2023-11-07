@@ -1,33 +1,23 @@
 <!-- Start SDK Example Usage -->
 
 
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
+import { DrinkType } from "The-Speakeasy-Bar/dist/models/components";
+import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-import (
-	"context"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"log"
-)
+(async () => {
+    const sdk = new TheSpeakeasyBar({
+        apiKey: "",
+    });
+    const drinkType: DrinkType = DrinkType.Spirit;
 
-func main() {
-	s := templatespeakeasybar.New(
-		templatespeakeasybar.WithSecurity(""),
-	)
+    const res = await sdk.drinks.listDrinks(drinkType);
 
-	var drinkType *shared.DrinkType = shared.DrinkTypeSpirit
-
-	ctx := context.Background()
-	res, err := s.Drinks.ListDrinks(ctx, drinkType)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if res.Drinks != nil {
-		// handle response
-	}
-}
+    if (res.statusCode == 200) {
+        // handle response
+    }
+})();
 
 ```
 <!-- End SDK Example Usage -->

@@ -52,40 +52,38 @@ Once you're finished iterating and happy with the output push only the latest ve
 <!-- Start SDK Installation -->
 ## SDK Installation
 
+### NPM
+
 ```bash
-go get github.com/speakeasy-sdks/template-speakeasy-bar
+npm add https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
+```
+
+### Yarn
+
+```bash
+yarn add https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
 ```
 <!-- End SDK Installation -->
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
+import { DrinkType } from "The-Speakeasy-Bar/dist/models/components";
+import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-import (
-	"context"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"log"
-)
+(async () => {
+    const sdk = new TheSpeakeasyBar({
+        apiKey: "",
+    });
+    const drinkType: DrinkType = DrinkType.Spirit;
 
-func main() {
-	s := templatespeakeasybar.New(
-		templatespeakeasybar.WithSecurity(""),
-	)
+    const res = await sdk.drinks.listDrinks(drinkType);
 
-	var drinkType *shared.DrinkType = shared.DrinkTypeSpirit
-
-	ctx := context.Background()
-	res, err := s.Drinks.ListDrinks(ctx, drinkType)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if res.Drinks != nil {
-		// handle response
-	}
-}
+    if (res.statusCode == 200) {
+        // handle response
+    }
+})();
 
 ```
 <!-- End SDK Example Usage -->
@@ -94,32 +92,32 @@ func main() {
 ## Available Resources and Operations
 
 
-### [Authentication](docs/sdks/authentication/README.md)
+### [.authentication](docs/sdks/authentication/README.md)
 
-* [Authenticate](docs/sdks/authentication/README.md#authenticate) - Authenticate with the API by providing a username and password.
+* [authenticate](docs/sdks/authentication/README.md#authenticate) - Authenticate with the API by providing a username and password.
 
-### [Config](docs/sdks/config/README.md)
+### [.drinks](docs/sdks/drinks/README.md)
 
-* [SubscribeToWebhooks](docs/sdks/config/README.md#subscribetowebhooks) - Subscribe to webhooks.
+* [getDrink](docs/sdks/drinks/README.md#getdrink) - Get a drink.
+* [listDrinks](docs/sdks/drinks/README.md#listdrinks) - Get a list of drinks.
 
-### [Drinks](docs/sdks/drinks/README.md)
+### [.ingredients](docs/sdks/ingredients/README.md)
 
-* [GetDrink](docs/sdks/drinks/README.md#getdrink) - Get a drink.
-* [ListDrinks](docs/sdks/drinks/README.md#listdrinks) - Get a list of drinks.
+* [listIngredients](docs/sdks/ingredients/README.md#listingredients) - Get a list of ingredients.
 
-### [Ingredients](docs/sdks/ingredients/README.md)
+### [.orders](docs/sdks/orders/README.md)
 
-* [ListIngredients](docs/sdks/ingredients/README.md#listingredients) - Get a list of ingredients.
+* [createOrder](docs/sdks/orders/README.md#createorder) - Create an order.
 
-### [Orders](docs/sdks/orders/README.md)
+### [.config](docs/sdks/config/README.md)
 
-* [CreateOrder](docs/sdks/orders/README.md#createorder) - Create an order.
+* [subscribeToWebhooks](docs/sdks/config/README.md#subscribetowebhooks) - Subscribe to webhooks.
 <!-- End SDK Available Operations -->
 
 <!-- Start Dev Containers -->
 # Dev Containers
 <div align="left">
-    <a href="https://codespaces.new/speakeasy-sdks/template-speakeasy-bar.git/tree/main"><img src="https://github.com/codespaces/badge.svg" /></a>
+    <a href="https://codespaces.new/speakeasy-sdks/TestCompany-sample-sdk-45.git/tree/main"><img src="https://github.com/codespaces/badge.svg" /></a>
     
 </div>
 
@@ -131,40 +129,38 @@ Experience our SDK in an enhanced sandbox environment. Try it now in **GitHub Co
 <!-- Start Error Handling -->
 # Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in your SDK should largely match your expectations.  All operations return a response object or throw an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 400-600          | */*              |
 
 
 ## Example
 
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-import (
-	"context"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/operations"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"log"
-)
+(async() => {
+  const sdk = new TheSpeakeasyBar({
+    apiKey: "",
+  });
 
-func main() {
-	s := templatespeakeasybar.New(
-		templatespeakeasybar.WithSecurity(""),
-	)
+  
+  let res;
+  try {
+    res = await sdk.authentication.authenticate({});
+  } catch (e) { 
+    if (e instanceof errors.APIError) {
+      console.error(e) // handle exception 
+    
+  }
 
-	ctx := context.Background()
-	res, err := s.Authentication.Authenticate(ctx, operations.AuthenticateRequestBody{})
-	if err != nil {
-
-		var e *APIError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-	}
-}
-
+  if (res.statusCode == 200) {
+    // handle response
+  }
+})();
 ```
 <!-- End Error Handling -->
 
@@ -173,7 +169,7 @@ func main() {
 
 ## Select Server by Name
 
-You can override the default server globally using the `WithServer` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally by passing a server name to the `server: string` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
 | Name | Server | Variables |
 | ----- | ------ | --------- |
@@ -183,76 +179,50 @@ You can override the default server globally using the `WithServer` option when 
 
 
 Some of the server options above contain variables. If you want to set the values of those variables, the following options are provided for doing so:
- * `WithEnvironment ServerEnvironment`
+ * `environment: models.ServerEnvironment`
 
- * `WithOrganization string`
+ * `organization: string`
 
 For example:
 
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-```go
-package main
+(async () => {
+    const sdk = new TheSpeakeasyBar({
+        server: "customer",
+        apiKey: "",
+    });
 
-import (
-	"context"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/operations"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"log"
-)
+    const res = await sdk.authentication.authenticate({});
 
-func main() {
-	s := templatespeakeasybar.New(
-		templatespeakeasybar.WithSecurity(""),
-		templatespeakeasybar.WithServer("customer"),
-	)
-
-	ctx := context.Background()
-	res, err := s.Authentication.Authenticate(ctx, operations.AuthenticateRequestBody{})
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if res.Authenticate200ApplicationJSONObject != nil {
-		// handle response
-	}
-}
+    if (res.statusCode == 200) {
+        // handle response
+    }
+})();
 
 ```
 
 
 ## Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverURL: str` optional parameter when initializing the SDK client instance. For example:
 
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-```go
-package main
+(async () => {
+    const sdk = new TheSpeakeasyBar({
+        serverURL: "https://speakeasy.bar",
+        apiKey: "",
+    });
 
-import (
-	"context"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/operations"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"log"
-)
+    const res = await sdk.authentication.authenticate({});
 
-func main() {
-	s := templatespeakeasybar.New(
-		templatespeakeasybar.WithSecurity(""),
-		templatespeakeasybar.WithServerURL("https://speakeasy.bar"),
-	)
-
-	ctx := context.Background()
-	res, err := s.Authentication.Authenticate(ctx, operations.AuthenticateRequestBody{})
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if res.Authenticate200ApplicationJSONObject != nil {
-		// handle response
-	}
-}
+    if (res.statusCode == 200) {
+        // handle response
+    }
+})();
 
 ```
 <!-- End Server Selection -->
@@ -260,35 +230,61 @@ func main() {
 <!-- Start Custom HTTP Client -->
 # Custom HTTP Client
 
-The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
+The Typescript SDK makes API calls using the (axios)[https://axios-http.com/docs/intro] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `AxiosInstance` object.
 
-```go
-type HTTPClient interface {
-	Do(req *http.Request) (*http.Response, error)
-}
+
+For example, you could specify a header for every request that your sdk makes as follows:
+
+```typescript
+from The-Speakeasy-Bar import TheSpeakeasyBar;
+import axios;
+
+const httpClient = axios.create({
+    headers: {'x-custom-header': 'someValue'}
+})
+
+
+const sdk = new TheSpeakeasyBar({defaultClient: httpClient});
 ```
-
-The built-in `net/http` client satisfies this interface and a default client based on the built-in is provided by default. To replace this default with a client of your own, you can implement this interface yourself or provide your own client configured as desired. Here's a simple example, which adds a client with a 30 second timeout.
-
-```go
-import (
-	"net/http"
-	"time"
-	"github.com/myorg/your-go-sdk"
-)
-
-var (
-	httpClient = &http.Client{Timeout: 30 * time.Second}
-	sdkClient  = sdk.New(sdk.WithClient(httpClient))
-)
-```
-
-This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client -->
 
 <!-- Start Go Types -->
 
 <!-- End Go Types -->
+
+
+
+<!-- Start Authentication -->
+
+# Authentication
+
+## Per-Client Security Schemes
+
+Your SDK supports the following security scheme globally:
+
+| Name     | Type     | Scheme   |
+| -------- | -------- | -------- |
+| `apiKey` | apiKey   | API key  |
+
+To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
+
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
+
+(async () => {
+    const sdk = new TheSpeakeasyBar({
+        apiKey: "",
+    });
+
+    const res = await sdk.authentication.authenticate({});
+
+    if (res.statusCode == 200) {
+        // handle response
+    }
+})();
+
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

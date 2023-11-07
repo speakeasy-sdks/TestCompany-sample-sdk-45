@@ -7,9 +7,24 @@ curl -fsSL https://raw.githubusercontent.com/speakeasy-api/speakeasy/main/instal
 rmdir samples || true
 mkdir samples
 
-# Go module commands
-go mod download
-go mod tidy
+npm install
+npm install -g ts-node
+npm link
+npm link The-Speakeasy-Bar
+TS_CONFIG_CONTENT=$(cat <<EOL
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "openapi": ["../src/index"],
+      "openapi/*": ["../src/*"]
+    }
+  },
+  "include": ["./**/*.ts"]
+}
+EOL
+)
+echo "$TS_CONFIG_CONTENT" > samples/tsconfig.json
 
 # Generate starter usage sample with speakeasy
-speakeasy generate usage -s ./openapi.yaml -l go -o samples/root.go
+speakeasy generate usage -s ./openapi.yaml -l typescript -o samples/root.ts

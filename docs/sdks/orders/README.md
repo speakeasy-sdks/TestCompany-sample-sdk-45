@@ -1,5 +1,5 @@
 # Orders
-(*Orders*)
+(*.orders*)
 
 ## Overview
 
@@ -7,63 +7,56 @@ The orders endpoints.
 
 ### Available Operations
 
-* [CreateOrder](#createorder) - Create an order.
+* [createOrder](#createorder) - Create an order.
 
-## CreateOrder
+## createOrder
 
 Create an order for a drink.
 
 ### Example Usage
 
-```go
-package main
+```typescript
+import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
+import { CreateOrderOrderUpdateRequestBody, CreateOrderOrderUpdateResponse } from "The-Speakeasy-Bar/dist/models/callbacks";
+import { ErrorT, OrderInput, OrderType } from "The-Speakeasy-Bar/dist/models/components";
+import { CreateOrderRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-import(
-	"context"
-	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/callbacks"
-)
+(async() => {
+  const sdk = new TheSpeakeasyBar({
+    apiKey: "",
+  });
+const requestBody: OrderInput[] = [
+  {
+    productCode: "APM-1F2D3",
+    quantity: 26535,
+    type: OrderType.Drink,
+  },
+];
+const callbackUrl: string = "string";
 
-func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
-    )
+  const res = await sdk.orders.createOrder(requestBody, callbackUrl);
 
-
-    requestBody := []shared.OrderInput{
-        shared.OrderInput{
-            ProductCode: "APM-1F2D3",
-            Quantity: 26535,
-            Type: shared.OrderTypeDrink,
-        },
-    }
-
-    var callbackURL *string = "string"
-
-    ctx := context.Background()
-    res, err := s.Orders.CreateOrder(ctx, requestBody, callbackURL)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.Order != nil {
-        // handle response
-    }
-}
+  if (res.statusCode == 200) {
+    // handle response
+  }
+})();
 ```
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `requestBody`                                            | [][shared.OrderInput](../../models/shared/orderinput.md) | :heavy_check_mark:                                       | N/A                                                      |
-| `callbackURL`                                            | **string*                                                | :heavy_minus_sign:                                       | The url to call when the order is updated.               |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `requestBody`                                                | [components.OrderInput](../../models/shared/orderinput.md)[] | :heavy_check_mark:                                           | N/A                                                          |
+| `callbackUrl`                                                | *string*                                                     | :heavy_minus_sign:                                           | The url to call when the order is updated.                   |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
 
-**[*operations.CreateOrderResponse](../../models/operations/createorderresponse.md), error**
+**Promise<[operations.CreateOrderResponse](../../models/operations/createorderresponse.md)>**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 400-600          | */*              |
