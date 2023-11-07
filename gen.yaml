@@ -14,7 +14,7 @@ generation:
   baseServerURL: ""
   flattenGlobalSecurity: true
   repoURL: https://github.com/speakeasy-sdks/template-speakeasy-bar.git
-  sdkClassName: speakeasy
+  sdkClassName: The-Speakeasy-Bar
   singleTagPerOp: false
   tagNamespacingDisabled: false
   telemetryEnabled: false
@@ -38,3 +38,10 @@ go:
   packageName: github.com/speakeasy-sdks/TestCompany-sample-sdk-45
   published: true
   repoSubDirectory: .
+typescript:
+  version: 0.0.1
+  author: TestCompany
+  clientServerStatusCodesAsErrors: true
+  flattenGlobalSecurity: true
+  maxMethodParams: 4
+  packageName: The-Speakeasy-Bar
