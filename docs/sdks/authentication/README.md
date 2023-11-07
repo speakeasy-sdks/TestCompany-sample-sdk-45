@@ -1,5 +1,5 @@
 # Authentication
-(*Authentication*)
+(*.Authentication*)
 
 ## Overview
 
@@ -21,14 +21,14 @@ package main
 import(
 	"context"
 	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/operations"
+	testcompanysamplesdk45 "github.com/speakeasy-sdks/TestCompany-sample-sdk-45"
+	"github.com/speakeasy-sdks/TestCompany-sample-sdk-45/pkg/models/shared"
+	"github.com/speakeasy-sdks/TestCompany-sample-sdk-45/pkg/models/operations"
 )
 
 func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
+    s := testcompanysamplesdk45.New(
+        testcompanysamplesdk45.WithSecurity(""),
     )
 
     ctx := context.Background()
@@ -37,7 +37,7 @@ func main() {
         log.Fatal(err)
     }
 
-    if res.Authenticate200ApplicationJSONObject != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -54,4 +54,7 @@ func main() {
 ### Response
 
 **[*operations.AuthenticateResponse](../../models/operations/authenticateresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.APIError | 5XX                | application/json   |
+| sdkerrors.SDKError | 400-600            | */*                |

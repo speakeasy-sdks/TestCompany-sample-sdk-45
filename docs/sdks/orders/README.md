@@ -1,5 +1,5 @@
 # Orders
-(*Orders*)
+(*.Orders*)
 
 ## Overview
 
@@ -21,14 +21,14 @@ package main
 import(
 	"context"
 	"log"
-	templatespeakeasybar "github.com/speakeasy-sdks/template-speakeasy-bar"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/callbacks"
+	testcompanysamplesdk45 "github.com/speakeasy-sdks/TestCompany-sample-sdk-45"
+	"github.com/speakeasy-sdks/TestCompany-sample-sdk-45/pkg/models/shared"
+	"github.com/speakeasy-sdks/TestCompany-sample-sdk-45/pkg/models/callbacks"
 )
 
 func main() {
-    s := templatespeakeasybar.New(
-        templatespeakeasybar.WithSecurity(""),
+    s := testcompanysamplesdk45.New(
+        testcompanysamplesdk45.WithSecurity(""),
     )
 
 
@@ -66,4 +66,7 @@ func main() {
 ### Response
 
 **[*operations.CreateOrderResponse](../../models/operations/createorderresponse.md), error**
-
+| Error Object       | Status Code        | Content Type       |
+| ------------------ | ------------------ | ------------------ |
+| sdkerrors.APIError | 5XX                | application/json   |
+| sdkerrors.SDKError | 400-600            | */*                |

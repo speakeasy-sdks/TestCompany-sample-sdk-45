@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/speakeasy-sdks/template-speakeasy-bar/pkg/models/shared"
+	"github.com/speakeasy-sdks/TestCompany-sample-sdk-45/pkg/models/shared"
 	"net/http"
 )
 
