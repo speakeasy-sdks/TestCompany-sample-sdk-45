@@ -19,11 +19,13 @@ jobs:
     with:
       force: ${{ github.event.inputs.force }}
       languages: |
-        - go
-      mode: pr
+        - typescript
+      mode: direct
+      openapi_doc_auth_header: x-api-key
       openapi_docs: |
-        - https://raw.githubusercontent.com/speakeasy-sdks/template-speakeasy-bar/main/openapi.yaml
+        - https://app.speakeasyapi.dev/v1/apis/The-Speakeasy-Bar/version/1.0.0/schema/download
       speakeasy_version: latest
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      openapi_doc_auth_token: ${{ secrets.SPEAKEASY_API_KEY }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
