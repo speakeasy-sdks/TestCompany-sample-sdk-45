@@ -1,5 +1,5 @@
 # Drinks
-(*.drinks*)
+(*drinks*)
 
 ## Overview
 
@@ -81,7 +81,7 @@ const drinkType: DrinkType = DrinkType.Spirit;
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `drinkType`                                                                  | [components.DrinkType](../../models/shared/drinktype.md)                     | :heavy_minus_sign:                                                           | The type of drink to filter by. If not provided all drinks will be returned. |
+| `drinkType`                                                                  | [components.DrinkType](../../models/components/drinktype.md)                 | :heavy_minus_sign:                                                           | The type of drink to filter by. If not provided all drinks will be returned. |
 | `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
 
 

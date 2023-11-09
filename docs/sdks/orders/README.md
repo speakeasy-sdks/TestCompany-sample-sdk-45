@@ -1,5 +1,5 @@
 # Orders
-(*.orders*)
+(*orders*)
 
 ## Overview
 
@@ -44,11 +44,11 @@ const callbackUrl: string = "string";
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `requestBody`                                                | [components.OrderInput](../../models/shared/orderinput.md)[] | :heavy_check_mark:                                           | N/A                                                          |
-| `callbackUrl`                                                | *string*                                                     | :heavy_minus_sign:                                           | The url to call when the order is updated.                   |
-| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `requestBody`                                                    | [components.OrderInput](../../models/components/orderinput.md)[] | :heavy_check_mark:                                               | N/A                                                              |
+| `callbackUrl`                                                    | *string*                                                         | :heavy_minus_sign:                                               | The url to call when the order is updated.                       |
+| `config`                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)     | :heavy_minus_sign:                                               | Available config options for making requests.                    |
 
 
 ### Response
