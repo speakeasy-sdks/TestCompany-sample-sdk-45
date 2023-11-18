@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: abbc3a8faac54f76013e5d509a8d11ec
   docVersion: 1.0.0
-  speakeasyVersion: 1.120.3
-  generationVersion: 2.192.1
+  speakeasyVersion: 1.121.1
+  generationVersion: 2.194.1
 generation:
   comments: {}
   devContainers:
@@ -27,11 +27,11 @@ features:
   typescript:
     core: 3.1.4
     devContainers: 2.88.0
-    errors: 2.81.7
+    errors: 2.81.8
     examples: 2.81.3
     flattening: 2.81.1
     globalSecurity: 2.82.0
-    globalServerURLs: 2.82.0
+    globalServerURLs: 2.82.1
     inputOutputModels: 2.82.0
     serverIDs: 2.81.2
 go:
@@ -44,7 +44,7 @@ go:
   published: true
   repoSubDirectory: .
 typescript:
-  version: 0.2.2
+  version: 0.2.3
   author: TestCompany
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true

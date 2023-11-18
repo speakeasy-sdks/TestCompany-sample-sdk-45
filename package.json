@@ -1,6 +1,6 @@
 {
   "name": "The-Speakeasy-Bar",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "TestCompany",
   "scripts": {
     "prepare": "tsc --build",
