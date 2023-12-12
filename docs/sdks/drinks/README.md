@@ -20,9 +20,9 @@ Get a drink by name, if authenticated this will include stock levels and product
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 import { GetDrinkRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-(async() => {
+async function run() {
   const sdk = new TheSpeakeasyBar({
-    apiKey: "",
+    apiKey: "<YOUR_API_KEY_HERE>",
   });
 const name: string = "string";
 
@@ -31,7 +31,9 @@ const name: string = "string";
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -63,10 +65,8 @@ import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 import { DrinkType } from "The-Speakeasy-Bar/dist/models/components";
 import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-(async() => {
-  const sdk = new TheSpeakeasyBar({
-    apiKey: "",
-  });
+async function run() {
+  const sdk = new TheSpeakeasyBar();
 const drinkType: DrinkType = DrinkType.Spirit;
 
   const res = await sdk.drinks.listDrinks(drinkType);
@@ -74,7 +74,9 @@ const drinkType: DrinkType = DrinkType.Spirit;
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters

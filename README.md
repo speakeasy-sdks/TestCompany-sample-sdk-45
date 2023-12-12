@@ -49,7 +49,7 @@ servers:
 
 Once you're finished iterating and happy with the output push only the latest version of spec into the repo and regenerate the SDK using step 6 above. 
 
-<!-- Start SDK Installation -->
+<!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ### NPM
@@ -63,10 +63,11 @@ npm add https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
 ```bash
 yarn add https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
+
 ### Example
 
 ```typescript
@@ -74,10 +75,8 @@ import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 import { DrinkType } from "The-Speakeasy-Bar/dist/models/components";
 import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-(async () => {
-    const sdk = new TheSpeakeasyBar({
-        apiKey: "",
-    });
+async function run() {
+    const sdk = new TheSpeakeasyBar();
     const drinkType: DrinkType = DrinkType.Spirit;
 
     const res = await sdk.drinks.listDrinks(drinkType);
@@ -85,14 +84,15 @@ import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
+<!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
-
 
 ### [authentication](docs/sdks/authentication/README.md)
 
@@ -114,21 +114,9 @@ import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 ### [config](docs/sdks/config/README.md)
 
 * [subscribeToWebhooks](docs/sdks/config/README.md#subscribetowebhooks) - Subscribe to webhooks.
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Dev Containers -->
-# Dev Containers
-<div align="left">
-    <a href="https://codespaces.new/speakeasy-sdks/TestCompany-sample-sdk-45.git/tree/main"><img src="https://github.com/codespaces/badge.svg" /></a>
-    
-</div>
-
-Experience our SDK in an enhanced sandbox environment. Try it now in **GitHub Codespaces**!
-
-* [Explore Dev Containers](.devcontainer/README.md)
-<!-- End Dev Containers -->
-
-<!-- Start Error Handling -->
+<!-- Start Error Handling [errors] -->
 ## Error Handling
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or throw an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
@@ -143,29 +131,35 @@ Example
 ```typescript
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-(async() => {
-  const sdk = new TheSpeakeasyBar({
-    apiKey: "",
-  });
+async function run() {
+    const sdk = new TheSpeakeasyBar({
+        apiKey: "<YOUR_API_KEY_HERE>",
+    });
 
-  
-  let res;
-  try {
-    res = await sdk.authentication.authenticate({});
-  } catch (e) { 
-    if (e instanceof errors.APIError) {
-      console.error(e) // handle exception 
-    
-  }
+    let res;
+    try {
+        res = await sdk.authentication.authenticate({});
+    } catch (err) {
+        if (err instanceof errors.APIError) {
+            console.error(err); // handle exception
+            throw err;
+        } else if (err instanceof errors.SDKError) {
+            console.error(err); // handle exception
+            throw err;
+        }
+    }
 
-  if (res.statusCode == 200) {
-    // handle response
-  }
-})();
+    if (res.statusCode == 200) {
+        // handle response
+    }
+}
+
+run();
+
 ```
-<!-- End Error Handling -->
+<!-- End Error Handling [errors] -->
 
-<!-- Start Server Selection -->
+<!-- Start Server Selection [server] -->
 ## Server Selection
 
 ### Select Server by Name
@@ -177,15 +171,16 @@ You can override the default server globally by passing a server name to the `se
 | `prod` | `https://speakeasy.bar` | None |
 | `staging` | `https://staging.speakeasy.bar` | None |
 | `customer` | `https://{organization}.{environment}.speakeasy.bar` | `environment` (default is `prod`), `organization` (default is `api`) |
+
 #### Example
 
 ```typescript
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-(async () => {
+async function run() {
     const sdk = new TheSpeakeasyBar({
         server: "customer",
-        apiKey: "",
+        apiKey: "<YOUR_API_KEY_HERE>",
     });
 
     const res = await sdk.authentication.authenticate({});
@@ -193,7 +188,9 @@ import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
 
@@ -209,10 +206,10 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```typescript
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-(async () => {
+async function run() {
     const sdk = new TheSpeakeasyBar({
         serverURL: "https://speakeasy.bar",
-        apiKey: "",
+        apiKey: "<YOUR_API_KEY_HERE>",
     });
 
     const res = await sdk.authentication.authenticate({});
@@ -220,21 +217,23 @@ import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
-<!-- End Server Selection -->
+<!-- End Server Selection [server] -->
 
-<!-- Start Custom HTTP Client -->
+<!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Typescript SDK makes API calls using the (axios)[https://axios-http.com/docs/intro] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `AxiosInstance` object.
+The Typescript SDK makes API calls using the [axios](https://axios-http.com/docs/intro) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `AxiosInstance` object.
 
 For example, you could specify a header for every request that your sdk makes as follows:
 
 ```typescript
-from The-Speakeasy-Bar import TheSpeakeasyBar;
-import axios;
+import { The-Speakeasy-Bar } from "TheSpeakeasyBar";
+import axios from "axios";
 
 const httpClient = axios.create({
     headers: {'x-custom-header': 'someValue'}
@@ -242,7 +241,7 @@ const httpClient = axios.create({
 
 const sdk = new TheSpeakeasyBar({defaultClient: httpClient});
 ```
-<!-- End Custom HTTP Client -->
+<!-- End Custom HTTP Client [http-client] -->
 
 <!-- Start Go Types -->
 
@@ -250,7 +249,7 @@ const sdk = new TheSpeakeasyBar({defaultClient: httpClient});
 
 
 
-<!-- Start Authentication -->
+<!-- Start Authentication [security] -->
 ## Authentication
 
 ### Per-Client Security Schemes
@@ -265,9 +264,9 @@ To authenticate with the API the `apiKey` parameter must be set when initializin
 ```typescript
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
-(async () => {
+async function run() {
     const sdk = new TheSpeakeasyBar({
-        apiKey: "",
+        apiKey: "<YOUR_API_KEY_HERE>",
     });
 
     const res = await sdk.authentication.authenticate({});
@@ -275,10 +274,12 @@ import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
-<!-- End Authentication -->
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

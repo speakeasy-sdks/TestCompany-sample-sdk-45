@@ -21,9 +21,9 @@ import { CreateOrderOrderUpdateRequestBody, CreateOrderOrderUpdateResponse } fro
 import { ErrorT, OrderInput, OrderType } from "The-Speakeasy-Bar/dist/models/components";
 import { CreateOrderRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-(async() => {
+async function run() {
   const sdk = new TheSpeakeasyBar({
-    apiKey: "",
+    apiKey: "<YOUR_API_KEY_HERE>",
   });
 const requestBody: OrderInput[] = [
   {
@@ -39,7 +39,9 @@ const callbackUrl: string = "string";
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters

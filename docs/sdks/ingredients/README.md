@@ -19,9 +19,9 @@ Get a list of ingredients, if authenticated this will include stock levels and p
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 import { ListIngredientsRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
-(async() => {
+async function run() {
   const sdk = new TheSpeakeasyBar({
-    apiKey: "",
+    apiKey: "<YOUR_API_KEY_HERE>",
   });
 const ingredients: string[] = [
   "string",
@@ -32,7 +32,9 @@ const ingredients: string[] = [
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters

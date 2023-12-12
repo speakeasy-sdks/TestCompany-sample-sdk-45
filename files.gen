@@ -48,7 +48,6 @@ src/models/operations/index.ts
 src/models/components/index.ts
 src/models/callbacks/index.ts
 src/models/webhooks/index.ts
-USAGE.md
 docs/models/operations/authenticaterequestbody.md
 docs/models/operations/authenticateresponsebody.md
 docs/models/operations/authenticateresponse.md
@@ -86,6 +85,7 @@ docs/sdks/drinks/README.md
 docs/sdks/ingredients/README.md
 docs/sdks/orders/README.md
 docs/sdks/config/README.md
+USAGE.md
 .gitattributes
 .devcontainer/README.md
 .devcontainer/devcontainer.json
