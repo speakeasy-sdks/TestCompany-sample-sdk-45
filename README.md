@@ -55,13 +55,13 @@ Once you're finished iterating and happy with the output push only the latest ve
 ### NPM
 
 ```bash
-npm add https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
+npm add The-Speakeasy-Bar
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
+yarn add The-Speakeasy-Bar
 ```
 <!-- End SDK Installation [installation] -->
 
