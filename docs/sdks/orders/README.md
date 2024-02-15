@@ -32,7 +32,7 @@ const requestBody: OrderInput[] = [
     type: OrderType.Drink,
   },
 ];
-const callbackUrl: string = "string";
+const callbackUrl: string = "<value>";
 
   const res = await sdk.orders.createOrder(requestBody, callbackUrl);
 

@@ -24,7 +24,7 @@ async function run() {
   const sdk = new TheSpeakeasyBar({
     apiKey: "<YOUR_API_KEY_HERE>",
   });
-const name: string = "string";
+const name: string = "<value>";
 
   const res = await sdk.drinks.getDrink(name);
 

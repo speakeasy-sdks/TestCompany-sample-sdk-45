@@ -24,7 +24,7 @@ async function run() {
     apiKey: "<YOUR_API_KEY_HERE>",
   });
 const ingredients: string[] = [
-  "string",
+  "<value>",
 ];
 
   const res = await sdk.ingredients.listIngredients(ingredients);
