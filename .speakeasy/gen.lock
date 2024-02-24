@@ -4,9 +4,9 @@ management:
   docChecksum: abbc3a8faac54f76013e5d509a8d11ec
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.258.2
-  releaseVersion: 0.4.1
-  configChecksum: 0ef13b13cb0ff6772c6695e12cf9380d
+  generationVersion: 2.272.4
+  releaseVersion: 0.5.0
+  configChecksum: eec78322b254a9d0e63032a12c71143e
   repoURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
@@ -23,15 +23,14 @@ features:
     inputOutputModels: 2.81.1
     serverIDs: 2.81.1
   typescript:
-    core: 3.4.7
+    core: 3.4.8
     devContainers: 2.88.0
     errors: 2.81.8
     examples: 2.81.3
     flattening: 2.81.1
-    globalSecurity: 2.82.2
+    globalSecurity: 2.82.3
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
-    methodSecurity: 2.82.0
     serverIDs: 2.81.2
 generatedFiles:
   - src/sdk/authentication.ts

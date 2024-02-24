@@ -19,9 +19,7 @@ Authenticate with the API by providing a username and password.
 import { TheSpeakeasyBar } from "The-Speakeasy-Bar";
 
 async function run() {
-  const sdk = new TheSpeakeasyBar({
-    apiKey: "<YOUR_API_KEY_HERE>",
-  });
+  const sdk = new TheSpeakeasyBar();
 
   const res = await sdk.authentication.authenticate({});
 

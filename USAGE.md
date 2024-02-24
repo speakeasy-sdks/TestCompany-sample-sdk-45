@@ -5,7 +5,9 @@ import { DrinkType } from "The-Speakeasy-Bar/dist/models/components";
 import { ListDrinksRequest } from "The-Speakeasy-Bar/dist/models/operations";
 
 async function run() {
-    const sdk = new TheSpeakeasyBar();
+    const sdk = new TheSpeakeasyBar({
+        apiKey: "<YOUR_API_KEY_HERE>",
+    });
     const drinkType: DrinkType = DrinkType.Spirit;
 
     const res = await sdk.drinks.listDrinks(drinkType);

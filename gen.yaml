@@ -10,6 +10,8 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
 go:
   version: 0.6.0
   clientServerStatusCodesAsErrors: true
@@ -17,7 +19,7 @@ go:
   maxMethodParams: 4
   packageName: github.com/speakeasy-sdks/TestCompany-sample-sdk-45
 typescript:
-  version: 0.4.1
+  version: 0.5.0
   author: TestCompany
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
