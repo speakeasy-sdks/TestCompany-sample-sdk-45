@@ -4,9 +4,9 @@ management:
   docChecksum: abbc3a8faac54f76013e5d509a8d11ec
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.272.7
-  releaseVersion: 0.5.1
-  configChecksum: 368575a3fffd160e5201ece3e8e52ef1
+  generationVersion: 2.275.4
+  releaseVersion: 0.6.0
+  configChecksum: d17e3045ac6e06d4d5d134b237a0e530
   repoURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
@@ -23,6 +23,7 @@ features:
     inputOutputModels: 2.81.1
     serverIDs: 2.81.1
   typescript:
+    callbacks: 1.0.0
     core: 3.4.8
     devContainers: 2.88.0
     errors: 2.81.8
@@ -32,6 +33,7 @@ features:
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.0
     serverIDs: 2.81.2
+    webhooks: 1.0.0
 generatedFiles:
   - src/sdk/authentication.ts
   - src/sdk/drinks.ts
