@@ -3,10 +3,10 @@ id: 8c375aaf-b4b4-4ab5-89ec-3f13a4a58a42
 management:
   docChecksum: abbc3a8faac54f76013e5d509a8d11ec
   docVersion: 1.0.0
-  speakeasyVersion: internal
-  generationVersion: 2.275.4
-  releaseVersion: 0.6.0
-  configChecksum: d17e3045ac6e06d4d5d134b237a0e530
+  speakeasyVersion: 1.207.1
+  generationVersion: 2.280.6
+  releaseVersion: 0.6.1
+  configChecksum: b2ccf3239aae106c7836ce2d381f4476
   repoURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/TestCompany-sample-sdk-45
@@ -30,7 +30,7 @@ features:
     examples: 2.81.3
     flattening: 2.81.1
     globalSecurity: 2.82.4
-    globalServerURLs: 2.82.1
+    globalServerURLs: 2.82.2
     inputOutputModels: 2.83.0
     serverIDs: 2.81.2
     webhooks: 1.0.0
