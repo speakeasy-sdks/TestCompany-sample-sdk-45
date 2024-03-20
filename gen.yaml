@@ -19,7 +19,7 @@ go:
   maxMethodParams: 4
   packageName: github.com/speakeasy-sdks/TestCompany-sample-sdk-45
 typescript:
-  version: 0.6.1
+  version: 0.6.2
   author: TestCompany
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
